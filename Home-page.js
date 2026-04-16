@@ -1,24 +1,39 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    function checkLoginStatus() {
+    function updateNavbar() {
         const loggedInUser = localStorage.getItem('loggedInUser');
-        const loginLink = document.querySelector('#nav-links a:first-child');
+        const navLinks = document.querySelector('#nav-links');
 
-        if (loginLink && loggedInUser) {
-            loginLink.innerHTML = `<i class="fa-solid fa-circle-user"></i> <span>Welcome, ${loggedInUser}</span>`;
+        const loginLink = document.querySelector('#login');
+        const signupLink = document.querySelector('#signup');
 
-            const signUpLink = document.querySelector('#nav-links a:last-child');
+        if (loggedInUser) {
+            if (loginLink) {
+                loginLink.innerHTML = `<i class="fa-solid fa-utensils"></i><span> Recipes</span>`;
+                loginLink.href = "Recipes_List.html";
+            }
 
-            if (signUpLink) {
-                signUpLink.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span>`;
-                signUpLink.href = '#';
+            if (signupLink) {
+                signupLink.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span>`;
+                signupLink.href = "#";
 
-                signUpLink.addEventListener('click', function(e) {
+                signupLink.onclick = function (e) {
                     e.preventDefault();
                     localStorage.removeItem('loggedInUser');
-                    showNotification(' You have been logged out successfully!');
+                    showNotification('You have been logged out successfully!');
                     setTimeout(() => location.reload(), 1000);
-                });
+                };
+            }
+
+        } else {
+            if (loginLink) {
+                loginLink.innerHTML = `<i class="fa-solid fa-circle-user"></i> Log In`;
+                loginLink.href = "log in.html";
+            }
+
+            if (signupLink) {
+                signupLink.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Sign Up`;
+                signupLink.href = "Sign Up.html";
             }
         }
     }
@@ -30,26 +45,28 @@ document.addEventListener('DOMContentLoaded', function() {
         notification = document.createElement('div');
         notification.className = 'notification';
         notification.textContent = message;
+
         notification.style.cssText = `
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 40px;
+            right: 600px;
             background: #e8D8C4;
             color: black;
             padding: 15px 20px;
             border-radius: 5px;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.7);
         `;
+
         document.body.appendChild(notification);
 
         setTimeout(() => {
-    notification.remove();}, 3000);
+            notification.remove();}, 3000);
     }
 
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
         showNotification('✨ Welcome to Piece of Cake! ✨');
     });
 
-     checkLoginStatus();
+    updateNavbar();
 });

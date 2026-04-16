@@ -27,7 +27,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     }
 
     alert("Logged in SUCCESSFULLY!");
-
+    localStorage.setItem("loggedInUser", email);
     localStorage.setItem("role", role);
 
     if (role === "admin") {

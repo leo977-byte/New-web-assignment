@@ -28,7 +28,6 @@ body {
   align-items: center;
 }
 
-/* ── Navbar ── */
 .navbar {
   width: 100%;
   background: #FFF5E1;
@@ -66,7 +65,7 @@ body {
   color: var(--sand-light);
 }
 
-/* ── Page wrapper ── */
+
 .page-wrapper {
   width: 100%;
   display: flex;
@@ -74,7 +73,7 @@ body {
   padding: 40px 16px 60px;
 }
 
-/* ── Card ── */
+
 .card {
   background: var(--white);
   border-radius: 20px;
@@ -84,7 +83,7 @@ body {
   overflow: hidden;
 }
 
-/* ── Header ── */
+
 .card-header {
   background: linear-gradient(135deg, var(--deep-wine) 0%, var(--wine-mid) 100%);
   padding: 32px 40px 28px;
@@ -124,12 +123,12 @@ body {
   z-index: 1;
 }
 
-/* ── Body ── */
+
 .card-body {
   padding: 36px 40px 40px;
 }
 
-/* ── Field groups ── */
+
 .field-group {
   margin-bottom: 20px;
 }
@@ -178,7 +177,7 @@ select {
 }
 textarea { resize: vertical; min-height: 100px; }
 
-/* ── Section divider ── */
+
 .section-title {
   display: flex;
   align-items: center;
@@ -198,7 +197,7 @@ textarea { resize: vertical; min-height: 100px; }
   background: linear-gradient(to right, var(--sand-mid), transparent);
 }
 
-/* ── Table ── */
+
 .table-wrap {
   border-radius: 12px;
   overflow: hidden;
@@ -231,7 +230,7 @@ tbody td {
   padding: 10px 10px;
 }
 
-/* table inputs */
+
 tbody td input[type="text"] {
   padding: 7px 10px;
   font-size: 0.85rem;
@@ -243,7 +242,7 @@ tbody td input[type="text"]:focus {
   box-shadow: 0 0 0 2px rgba(86,28,36,0.08);
 }
 
-/* ── Buttons ── */
+
 .btn {
   display: inline-flex;
   align-items: center;

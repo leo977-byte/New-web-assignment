@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 signUpLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     localStorage.removeItem('loggedInUser');
-                    showNotification('👋 You have been logged out successfully!');
+                    showNotification(' You have been logged out successfully!');
                     setTimeout(() => location.reload(), 1000);
                 });
             }
@@ -39,19 +39,14 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 15px 20px;
             border-radius: 5px;
             z-index: 1000;
-            animation: slideIn 0.3s ease;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         `;
         document.body.appendChild(notification);
 
         setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
+    notification.remove();}, 3000);
     }
 
-
-    // Welcome notification on page load
     window.addEventListener('load', function() {
         showNotification('✨ Welcome to Piece of Cake! ✨');
     });

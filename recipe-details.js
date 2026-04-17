@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     let role = localStorage.getItem("role");
     let storedRecipes = JSON.parse(localStorage.getItem("myRecipes"));
-
     storedRecipes = storedRecipes.map(recipe => {
         if (recipe.ingredients) {
             recipe.ingredients = recipe.ingredients.map(item => {
@@ -17,22 +16,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const params = new URLSearchParams(window.location.search);
         return params.get("id");
     }
-
     let recipeId = getRecipeId();
     let selectedRecipe = recipeId ? storedRecipes.find(r => r.id == recipeId):null;
-
     if (!selectedRecipe) {
           alert("Recipe not found");
           window.location.href = "Recipes_List.html";
           return;
-
     }
-
     function renderUI() {
         document.getElementById("Title").innerText = selectedRecipe.title || selectedRecipe.name;
         document.getElementById("category").innerText = "Category: " + selectedRecipe.category;
         document.getElementById("recipeImage").src = selectedRecipe.image;
-
         const ul = document.getElementById("ingredientsList");
         ul.innerHTML = "";
         if (selectedRecipe.ingredients && selectedRecipe.ingredients.length > 0) {
@@ -44,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             ul.innerHTML = "<li>No ingredients listed.</li>";
         }
-
         const ol = document.getElementById("stepsList");
         ol.innerHTML = "";
         if (selectedRecipe.steps && selectedRecipe.steps.length > 0) {
@@ -58,11 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
             li.textContent = selectedRecipe.description || "No steps provided.";
             ol.appendChild(li);
         }
-
         document.getElementById("cookingTime").innerText = selectedRecipe.cookingTime || "N/A";
         document.getElementById("servings").innerText = selectedRecipe.servings || "N/A";
     }
-
     const editBtn = document.getElementById("editBtn");
     const deleteBtn = document.getElementById("deleteBtn");
     const favBtn = document.getElementById("addToFavBtn");
@@ -70,10 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (editBtn) editBtn.classList.add("hidden");
     if (deleteBtn) deleteBtn.classList.add("hidden");
     if (favBtn) favBtn.classList.add("hidden");
-
     if (role === "admin") {
-        if (editBtn){ editBtn.classList.remove("hidden");
-           
+        if (editBtn){ editBtn.classList.remove("hidden");   
     editBtn.addEventListener("click", function () {
          if (!selectedRecipe || !selectedRecipe.id) {
         alert("Invalid recipe ");
@@ -81,8 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
         window.location.href = `Edit_recipe.html?id=${selectedRecipe.id}`;
     });
-}
-        
+                }
         if (deleteBtn) {
             deleteBtn.classList.remove("hidden");
             deleteBtn.addEventListener("click", function () {
@@ -98,16 +86,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (favBtn) {
             favBtn.classList.remove("hidden");
             favBtn.onclick = function () {
-                    addToFavorites(
-                        selectedRecipe.id, 
-                        selectedRecipe.name || selectedRecipe.title,
-                        selectedRecipe.image, 
-                        selectedRecipe.category
-                    );
+                    addToFavorites(selectedRecipe.id, selectedRecipe.title,selectedRecipe.image,selectedRecipe.category);
             }
-        
         }
     }
-
     renderUI();
 });

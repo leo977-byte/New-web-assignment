@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         } else {
             const li = document.createElement("li");
-            li.textContent = selectedRecipe.description || "No steps provided.";
+            li.textContent = "No steps provided.";
             ol.appendChild(li);
         }
         document.getElementById("cookingTime").innerText = selectedRecipe.cookingTime || "N/A";
